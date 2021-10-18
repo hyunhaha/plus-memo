@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Item = ({ status, label, value, toggleStatus, editItemLabel, editItemValue, id }) => {
+const Item = ({ status, label, value, toggleStatus, editItemLabel, editItemValue, deleteItem, id }) => {
   const [inputStatus, setInputStatus] = useState(true);
   const [inputLabel, setInputLabel] = useState('');
   const [inputText, setInputText] = useState(0);
@@ -26,12 +26,15 @@ const Item = ({ status, label, value, toggleStatus, editItemLabel, editItemValue
     setInputStatus(!inputStatus)
     toggleStatus(!inputStatus, id)
   }
+  const deleteHandler = (event) => {
+    deleteItem(id)
+  }
   return (
     <li>
       <input type='checkbox' checked={inputStatus} onChange={onChangeCheckboxHandler}></input>
       <input value={inputLabel} onChange={onChangeLabelHandler}></input>
-      <input value={inputText} onChange={onChangeHandler}></input>
-
+      <input value={inputText} type="number" onChange={onChangeHandler}></input>
+      <button onClick={deleteHandler}>delete</button>
     </li>
   )
 };

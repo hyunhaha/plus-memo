@@ -49,6 +49,15 @@ const List = (props) => {
     })
   }
 
+  const deleteItem = (id) => {
+    console.log(id);
+    setItems(cur => {
+      const newItems = [...cur];
+      const target = newItems.findIndex(i => i.id === id);
+      newItems.splice(target, 1);
+      return newItems;
+    })
+  }
   const addItem = () => {
     setItems(cur => {
       const newList = [...cur];
@@ -57,7 +66,18 @@ const List = (props) => {
     })
   }
 
-  const elements = items.map((item, index) => <Item key={index} id={item.id} status={item.status} label={item.label} value={item.value} toggleStatus={toggleStatus} editItemLabel={editItemLabel} editItemValue={editItemValue} />)
+  const elements = items.map((item, index) =>
+    <Item
+      key={index}
+      id={item.id}
+      status={item.status}
+      label={item.label}
+      value={item.value}
+      toggleStatus={toggleStatus}
+      editItemLabel={editItemLabel}
+      editItemValue={editItemValue}
+      deleteItem={deleteItem}
+    />)
   return (
     <div>
       <ol>
