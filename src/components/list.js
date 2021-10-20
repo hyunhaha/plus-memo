@@ -26,9 +26,9 @@ padding:8px 50px;
 `;
 const List = (props) => {
   const [items, setItems] = useState([
-    { id: Date.now() + 1, status: true, label: 'aaa', value: 1 },
-    { id: Date.now() + 2, status: true, label: 'bbb', value: 2 },
-    { id: Date.now() + 3, status: true, label: 'ccc', value: 3 }]);
+    { id: Date.now() + 1, status: true, label: '포도', value: 1000 },
+    { id: Date.now() + 2, status: true, label: '당근', value: 2000 },
+    { id: Date.now() + 3, status: true, label: '양파', value: 3000 }]);
   useEffect(() => {
     console.log(items)
   }, [items])
