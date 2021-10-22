@@ -19,32 +19,28 @@ const AddButton = styled.div`
   }
 `;
 const Total = styled.div`
-
-padding:8px 50px;
+  padding:8px 50px;
   display:flex;
   justify-content:space-between;
 `;
+const Explain = styled.p`
+  text-align: right;
+  font-size: 12px;
+`
 const List = (props) => {
   const [items, setItems] = useState([
     { id: Date.now() + 1, status: true, label: '포도', value: 1000 },
     { id: Date.now() + 2, status: true, label: '당근', value: 2000 },
     { id: Date.now() + 3, status: true, label: '양파', value: 3000 }]);
-  useEffect(() => {
-    console.log(items)
-  }, [items])
 
   const sum = useMemo(() => {
     return items.reduce((acc, item) => acc += item.status ? item.value : 0, 0);
   }, [items]);
 
   const editItemValue = (changedValue, id) => {
-    console.log(changedValue)
-    console.log(id)
     setItems(cur => {
       const newItems = [...cur];
       const target = newItems.findIndex(i => i.id === id);
-      console.log(target)
-      console.log(newItems[target])
       newItems[target].value = changedValue;
       return newItems;
     })
@@ -54,26 +50,20 @@ const List = (props) => {
     setItems(cur => {
       const newItems = [...cur];
       const target = newItems.findIndex(i => i.id === id);
-      console.log(target)
-      console.log(newItems[target])
       newItems[target].label = changedLabel;
       return newItems;
     })
   }
   const toggleStatus = (status, id) => {
-    console.log(status)
     setItems(cur => {
       const newItems = [...cur];
       const target = newItems.findIndex(i => i.id === id);
-      console.log(target)
-      console.log(newItems[target])
       newItems[target].status = status;
       return newItems;
     })
   }
 
   const deleteItem = (id) => {
-    console.log(id);
     setItems(cur => {
       const newItems = [...cur];
       const target = newItems.findIndex(i => i.id === id);
@@ -103,6 +93,7 @@ const List = (props) => {
     />)
   return (
     <TodoListBlock>
+      <Explain>*체크시 총합 계산에 포함됩니다.</Explain>
       <OrderList>
         {elements}
       </OrderList>

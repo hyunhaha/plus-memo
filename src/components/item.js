@@ -78,7 +78,6 @@ const Item = ({ status, label, value, toggleStatus, editItemLabel, editItemValue
     editItemLabel(event.target.value, id)
   }
   const onChangeCheckboxHandler = (event) => {
-    console.log(event.target.checked)
     setInputStatus(!inputStatus)
     toggleStatus(!inputStatus, id)
   }
